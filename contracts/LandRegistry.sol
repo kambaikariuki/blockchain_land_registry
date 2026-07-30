@@ -23,12 +23,15 @@ contract LandRegistry is AccessControl {
 
     mapping(uint256 => Property) private properties;
 
+    //Events
+
     event PropertyRegistered(
         uint256 indexed parcelId,
         address indexed owner,
         bytes32 certificateHash
     );
 
+    //Functions
     function registerProperty(uint256 parcelId, address owner) external onlyRole(REGISTRAR_ROLE){
         require(owner != address(0), "Invalid owner");
         require(!properties[parcelId].exists, "Property already exists");
@@ -79,6 +82,78 @@ contract LandRegistry is AccessControl {
 
     function removeRegistrar(address registrar) external onlyRole(DEFAULT_ADMIN_ROLE){
         revokeRole(REGISTRAR_ROLE, registrar);
+    }
+
+    // Ownership transfer
+    struct TransferRequest {
+        address seller;
+        address buyer;
+        uint256 requestedAt;
+        bool pending;
+    }
+
+    mapping(uint256 => TransferRequest) private transferRequests;
+
+    //Events
+    event TransferRequested(
+        uint256 indexed parcelId,
+        address indexed seller,
+        address indexed buyer
+    );
+
+    event OwnershipTransferred(
+        uint256 indexed parcelId,
+        address indexed oldOwner,
+        address indexed newOwner,
+        bytes certificateHash
+    );
+
+    event TransferRejected(
+        uint256 indexed parcelId
+    );
+
+    //Functions
+    function requestTransfer(uint256 parcelId, address buyer) external {
+        require(properties[parcelId].exists, "Property does not exist.");
+        require(
+            msg.sender == properties[parcelId].currentOwner, "Only the current owner can request a transfer."
+            );
+        require(buyer != address(0), "Invalid buyer.");
+
+        require(
+            !transferRequests[parcelId].pending, "Transfer request already pending."
+        );
+
+        transferRequests[parcelId] = TransferRequest({
+            seller: msg.sender,
+            buyer: buyer,
+            requestedAt: block.timestamp,
+            pending: true
+        });
+
+        emit TransferRequested(
+            parcelId,
+            msg.sender,
+            buyer
+        );
+    }
+
+    function getTransferRequest(uint parcelId) external view returns (
+        address,
+        address,
+        uint256,
+        bool
+    ){
+        require(transferRequests[parcelId].pending, "Transfer request not found");
+
+        TransferRequest memory transferRequest = transferRequests[parcelId];
+
+        return(
+            transferRequest.seller,
+            transferRequest.buyer,
+            transferRequest.requestedAt,
+            transferRequest.pending
+        );
     }
 
 }
