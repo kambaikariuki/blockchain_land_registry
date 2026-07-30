@@ -12,6 +12,7 @@ contract LandRegistry is AccessControl {
         _grantRole(REGISTRAR_ROLE, admin);
     }
 
+    //Property Registration
     struct Property {
         uint256 parcelId;
         address currentOwner;
@@ -32,13 +33,23 @@ contract LandRegistry is AccessControl {
     );
 
     //Functions
+
+    function _generateCertificate(
+        uint256 parcelId,
+        address owner,
+        uint256 version
+    ) private pure returns (bytes32){
+        return keccak256(
+            abi.encode(parcelId, owner, version)
+        );
+    }
+
+
     function registerProperty(uint256 parcelId, address owner) external onlyRole(REGISTRAR_ROLE){
         require(owner != address(0), "Invalid owner");
         require(!properties[parcelId].exists, "Property already exists");
 
-        bytes32 certificateHash = keccak256(
-            abi.encode(parcelId, owner, uint256(1))
-        );
+        bytes32 certificateHash = _generateCertificate(parcelId, owner, 1);
 
         properties[parcelId] = Property({
             parcelId: parcelId,
@@ -84,6 +95,7 @@ contract LandRegistry is AccessControl {
         revokeRole(REGISTRAR_ROLE, registrar);
     }
 
+
     // Ownership transfer
     struct TransferRequest {
         address seller;
@@ -105,7 +117,7 @@ contract LandRegistry is AccessControl {
         uint256 indexed parcelId,
         address indexed oldOwner,
         address indexed newOwner,
-        bytes certificateHash
+        bytes32 certificateHash
     );
 
     event TransferRejected(
@@ -144,7 +156,7 @@ contract LandRegistry is AccessControl {
         uint256,
         bool
     ){
-        require(transferRequests[parcelId].pending, "Transfer request not found");
+        require(transferRequests[parcelId].pending, "Transfer request not found.");
 
         TransferRequest memory transferRequest = transferRequests[parcelId];
 
@@ -154,6 +166,33 @@ contract LandRegistry is AccessControl {
             transferRequest.requestedAt,
             transferRequest.pending
         );
+    }
+
+    // Approve transfer
+    function approveTransfer(uint256 parcelId) external onlyRole(REGISTRAR_ROLE){
+        //check parcel exists
+        require(properties[parcelId].exists, "Property not found");
+        //check if transfer is pending
+        require(transferRequests[parcelId].pending, "No pending transfer request.");
+
+        Property storage property = properties[parcelId];
+        TransferRequest storage request = transferRequests[parcelId];
+        // change ownership
+
+        address oldOwner = property.currentOwner;
+        address newOwner = request.buyer;
+
+        property.currentOwner = newOwner;
+        property.certificateVersion++;
+
+        // change certificate and increment certificate version
+        bytes32 newCertificate = _generateCertificate(parcelId, newOwner, property.certificateVersion); 
+        
+        property.currentCertificate = newCertificate;
+
+        delete transferRequests[parcelId];
+
+        emit OwnershipTransferred(parcelId, oldOwner, newOwner, newCertificate);
     }
 
 }
