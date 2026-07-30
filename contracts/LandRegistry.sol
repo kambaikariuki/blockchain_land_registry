@@ -195,4 +195,29 @@ contract LandRegistry is AccessControl {
         emit OwnershipTransferred(parcelId, oldOwner, newOwner, newCertificate);
     }
 
+
+    // Verify certificate
+    function verifyCertificate(uint256 parcelId, bytes32 certificateHash) external view returns (
+        bool valid,
+        address currentOwner,
+        bytes32 currentCertificate,
+        uint256 certificateVersion
+    ) {
+        require(properties[parcelId].exists, "Property not found.");
+
+        Property storage property = properties[parcelId];
+
+        valid = property.currentCertificate == certificateHash;
+        currentOwner = property.currentOwner;
+        currentCertificate = property.currentCertificate;
+        certificateVersion = property.certificateVersion;
+
+        return(
+            valid,
+            currentOwner,
+            currentCertificate,
+            certificateVersion
+        );
+    }
+
 }

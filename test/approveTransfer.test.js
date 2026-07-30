@@ -22,7 +22,6 @@ describe("Approve Transfer Requests", function () {
             .connect(owner)
             .requestTransfer(1001, buyer.address);
 
-        const request = await registry.getTransferRequest(1001);
     });
 
     // Approve Transfer requests tests
