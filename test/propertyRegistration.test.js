@@ -2,49 +2,42 @@ const { expect } = require("chai");
 const { ethers } = require("hardhat");
 
 describe("Property Registration", function () {
-    let registry;
-    let admin;
-    let owner;
-    let buyer;
-    
-    beforeEach(async function () {
-        [admin, owner, buyer] = await ethers.getSigners();
+  let registry;
+  let admin;
+  let owner;
+  let buyer;
 
-        const LandRegistry = await ethers.getContractFactory("LandRegistry");
+  beforeEach(async function () {
+    [admin, owner, buyer] = await ethers.getSigners();
 
-        registry = await LandRegistry.deploy(admin.address);
+    const LandRegistry = await ethers.getContractFactory("LandRegistry");
 
-        await registry.waitForDeployment();
-    });
+    registry = await LandRegistry.deploy(admin.address);
 
-    // Property Registration tests
+    await registry.waitForDeployment();
+  });
 
-    it("should give deployer registrar role", async function () {
+  // Property Registration tests
 
-        const role = await registry.REGISTRAR_ROLE();
+  it("should give deployer registrar role", async function () {
+    const role = await registry.REGISTRAR_ROLE();
 
-        expect(await registry.hasRole(role, admin.address)).to.equal(true);
-    });
+    expect(await registry.hasRole(role, admin.address)).to.equal(true);
+  });
 
-    it("should register a property", async function () {
+  it("should register a property", async function () {
+    await registry.registerProperty(1001, owner.address);
 
-        await registry.registerProperty(1001,owner.address);
+    const property = await registry.getProperty(1001);
 
-        const property = await registry.getProperty(1001);
+    expect(property[0]).to.equal(1001n);
+    expect(property[1]).to.equal(owner.address);
+    expect(property[3]).to.equal(1n);
+  });
 
-        expect(property[0]).to.equal(1001n);
-        expect(property[1]).to.equal(owner.address);
-        expect(property[3]).to.equal(1n);
-        
-    });
+  it("shoud reject duplicate registration of parcel", async function () {
+    await registry.registerProperty(1001, owner.address);
 
-    it("shoud reject duplicate registration of parcel", async function () {
-
-        await registry.registerProperty(1001, owner.address);
-
-        await expect(
-            registry.registerProperty(1001, owner.address)
-        ).to.be.reverted;
-    });
-
+    await expect(registry.registerProperty(1001, owner.address)).to.be.reverted;
+  });
 });

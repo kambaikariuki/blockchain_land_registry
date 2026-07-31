@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/dashboard.css" />
+    <title>Dashboard</title>
+  </head>
+
+  <body>
+    <nav>
+      <div>
+        <a href="index.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="verify.html">Verify certificate</a>
+      </div>
+    </nav>
+    <main>
+      <h1>Blockchain Land Registry Dashboard</h1>
+      <div>
+        <p>Click here to connect your wallet</p>
+        <button id="connectBtn">Connect</button>
+      </div>
+      <div>
+        <p id="walletId"></p>
+      </div>
+
+      <div id="registrarSection" class="hidden">
+        <h2>Registrar Dashboard</h2>
+
+        <div class="card">
+          <h3>Register Property</h3>
+
+          <label>Parcel ID</label>
+          <input id="parcelId" type="number" />
+
+          <label>Owner Address</label>
+          <input id="ownerAddress" type="text" />
+
+          <button id="registerBtn">Register Property</button>
+
+          <p id="registerStatus"></p>
+        </div>
+
+        <div class="card">
+          <h3>Pending Transfers</h3>
+
+          <div id="pendingTransfers">No pending transfers.</div>
+        </div>
+      </div>
+
+      <div id="ownerSection" class="hidden">
+        <h2>My Properties</h2>
+
+        <div id="propertyList"></div>
+      </div>
+      <div id="transferModal" class="modal hidden">
+        <div class="modal-card">
+          <h2>Request Transfer</h2>
+
+          <p>
+            Parcel ID:
+            <span id="transferParcelId"></span>
+          </p>
+
+          <label>Buyer Address</label>
+
+          <input id="buyerAddress" type="text" placeholder="0x..." />
+
+          <p id="transferStatus"></p>
+
+          <div class="buttons">
+            <button id="cancelTransfer">Cancel</button>
+
+            <button id="submitTransfer">Submit</button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <hr />
+      <div class="footer-content">
+        <p>Blockchain Land Registry</p>
+        <p>&copy; 2026</p>
+        <p>Powered by Ethereum</p>
+      </div>
+    </footer>
+  </body>
+  <script type="module" src="js/dashboard.js"></script>
+  <script type="module" src="js/owner.js"></script>
+  <script type="module" src="js/registrar.js"></script>
+</html>
