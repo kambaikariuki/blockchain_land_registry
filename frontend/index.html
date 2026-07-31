@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/index.css" />
+    <title>Home</title>
+  </head>
+
+  <body>
+    <nav>
+      <div>
+        <a href="index.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="verify.html">Verify certificate</a>
+      </div>
+    </nav>
+    <main>
+      <section class="hero">
+        <h1>Welcome to Blockchain Land Registry</h1>
+
+        <p>
+          Avoid fraudulent sellers by searching registered land parcels and
+          verify ownership securely using blockchain.
+        </p>
+
+        <div class="search-container">
+          <input type="number" placeholder="Enter Parcel ID" id="parcelId" />
+          <button id="searchBtn">Search</button>
+        </div>
+        <div id="searchResult" class="hidden">
+          <div class="card">
+            <h2>Property Details</h2>
+
+            <p>
+              <strong>Parcel ID:</strong>
+              <span id="parcel"></span>
+            </p>
+
+            <p>
+              <strong>Owner Address:</strong>
+              <span id="owner"></span>
+            </p>
+
+            <p>
+              <strong>Certificate Version:</strong>
+              <span id="version"></span>
+            </p>
+
+            <p>
+              <strong>Registered:</strong>
+              <span id="registered"></span>
+            </p>
+
+            <p>
+              <strong>Certificate Hash:</strong>
+              <span id="certificateHash"></span>
+            </p>
+          </div>
+        </div>
+
+        <p id="searchMessage"></p>
+      </section>
+    </main>
+
+    <footer>
+      <hr />
+      <div class="footer-content">
+        <p>Blockchain Land Registry</p>
+        <p>&copy; 2026</p>
+        <p>Powered by Ethereum</p>
+      </div>
+    </footer>
+    <script type="module" src="js/index.js"></script>
+  </body>
+</html>

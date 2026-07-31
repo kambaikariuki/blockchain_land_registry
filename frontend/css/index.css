@@ -1,0 +1,46 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5rem 2rem;
+}
+
+.hidden {
+  display: none;
+}
+
+footer {
+  margin-top: 4rem;
+  padding: 2rem 1rem;
+  text-align: center;
+}
+footer hr {
+  margin-bottom: 1.5rem;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-content p {
+  margin: 0;
+  color: #666;
+}

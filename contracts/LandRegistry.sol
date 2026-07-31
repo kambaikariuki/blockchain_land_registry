@@ -23,6 +23,7 @@ contract LandRegistry is AccessControl {
     }
 
     mapping(uint256 => Property) private properties;
+    mapping(address => uint256[]) private ownedParcels;
 
     //Events
 
@@ -60,6 +61,8 @@ contract LandRegistry is AccessControl {
             exists: true
         });
 
+        ownedParcels[owner].push(parcelId);
+
         emit PropertyRegistered(parcelId, owner, certificateHash);
     }
 
@@ -95,6 +98,11 @@ contract LandRegistry is AccessControl {
         revokeRole(REGISTRAR_ROLE, registrar);
     }
 
+    function isRegistrar(address account) external view returns (bool)
+    {
+        return hasRole(REGISTRAR_ROLE, account);
+    }
+
 
     // Ownership transfer
     struct TransferRequest {
@@ -105,6 +113,8 @@ contract LandRegistry is AccessControl {
     }
 
     mapping(uint256 => TransferRequest) private transferRequests;
+
+    uint256[] private pendingTransferParcels;
 
     //Events
     event TransferRequested(
@@ -143,6 +153,8 @@ contract LandRegistry is AccessControl {
             pending: true
         });
 
+        pendingTransferParcels.push(parcelId);
+
         emit TransferRequested(
             parcelId,
             msg.sender,
@@ -168,6 +180,11 @@ contract LandRegistry is AccessControl {
         );
     }
 
+    function getPendingTransfers() external view returns (uint256[] memory){
+        return pendingTransferParcels;
+    }
+
+
     // Approve transfer
     function approveTransfer(uint256 parcelId) external onlyRole(REGISTRAR_ROLE){
         //check parcel exists
@@ -182,6 +199,9 @@ contract LandRegistry is AccessControl {
         address oldOwner = property.currentOwner;
         address newOwner = request.buyer;
 
+        _removeOwnedParcel(oldOwner, parcelId);
+        ownedParcels[newOwner].push(parcelId);
+
         property.currentOwner = newOwner;
         property.certificateVersion++;
 
@@ -192,9 +212,44 @@ contract LandRegistry is AccessControl {
 
         delete transferRequests[parcelId];
 
+        for (uint256 i = 0; i < pendingTransferParcels.length; i++) {
+            if (pendingTransferParcels[i] == parcelId) {
+
+                pendingTransferParcels[i] =
+                    pendingTransferParcels[pendingTransferParcels.length - 1];
+
+                pendingTransferParcels.pop();
+
+                break;
+            }
+        }
+
         emit OwnershipTransferred(parcelId, oldOwner, newOwner, newCertificate);
     }
 
+    function getOwnedParcels(address owner) external view returns (uint256[] memory)
+    {
+        return ownedParcels[owner];
+    }
+
+    function _removeOwnedParcel(address owner, uint256 parcelId) private{
+
+        uint256[] storage parcels = ownedParcels[owner];
+
+        for (uint256 i = 0; i < parcels.length; i++) {
+            if (parcels[i] == parcelId) {
+                // Move the last element into the current position
+                parcels[i] = parcels[parcels.length - 1];
+
+                // Remove the last element
+                parcels.pop();
+
+                return;
+            }
+        }
+
+        revert("Parcel not found for owner");
+    }
 
     // Verify certificate
     function verifyCertificate(uint256 parcelId, bytes32 certificateHash) external view returns (
