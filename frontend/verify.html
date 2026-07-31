@@ -8,16 +8,63 @@
   </head>
 
   <body>
-    <nav>
-      <div>
-        <a href="index.html">Home</a>
-        <a href="dashboard.html">Dashboard</a>
-        <a href="verify.html">Verify certificate</a>
-      </div>
-    </nav>
+     <nav>
+    <h2>Certificate Verification</h2>
+
+    <div>
+        <a href="index.html" class="active">Home</a>
+        <a href="dashboard.html" class="active">Dashboard</a>
+        <a href="verify.html" class="active">Verify Certificate</a>
+    </div>
+</nav>
     <main>
-        
+      <section class="hero">
+        <h1>Verify Certificate</h1>
+
+        <p>Verify that a land ownership certificate is authentic.</p>
+
+        <div class="verify-form">
+          <input type="number" id="parcelId" placeholder="Parcel ID" />
+
+          <input
+            type="text"
+            id="certificateHash"
+            placeholder="Certificate Hash"
+          />
+
+          <button id="verifyBtn">Verify</button>
+        </div>
+
+        <p id="verifyMessage"></p>
+
+        <div id="verifyResult" class="hidden">
+          <div class="card">
+            <h2 id="verifyStatus"></h2>
+
+            <p>
+              <strong>Parcel ID:</strong>
+              <span id="resultParcel"></span>
+            </p>
+
+            <p>
+              <strong>Owner:</strong>
+              <span id="resultOwner"></span>
+            </p>
+
+            <p>
+              <strong>Certificate Version:</strong>
+              <span id="resultVersion"></span>
+            </p>
+
+            <p>
+              <strong>Registered:</strong>
+              <span id="resultDate"></span>
+            </p>
+          </div>
+        </div>
+      </section>
     </main>
+    <script type="module" src="js/verify.js"></script>
     <footer>
       <hr />
       <div class="footer-content">
