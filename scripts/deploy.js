@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 
 async function main() {
-  const [, deployer] = await hre.ethers.getSigners();
+  const [deployer] = await hre.ethers.getSigners();
 
   console.log("Deploying with:", deployer.address);
 

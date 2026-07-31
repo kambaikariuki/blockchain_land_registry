@@ -1,3 +1,4 @@
+import { loadHistory } from "./history.js";
 import { connectWallet, getContract } from "./wallet.js";
 
 const searchBtn = document.getElementById("searchBtn");
@@ -31,6 +32,8 @@ async function searchProperty() {
 
     const contract = getContract();
 
+    console.log("Contract:", contract.address);
+
     const property = await contract.getProperty(parcelId);
 
     resultParcelId.textContent = property[0].toString();
@@ -46,7 +49,10 @@ async function searchProperty() {
     // bytes32 certificate hash
     resultHash.textContent = property[2];
 
+    await loadHistory(parcelId);
+
     searchResult.classList.remove("hidden");
+
   } catch (error) {
     console.error(error);
 

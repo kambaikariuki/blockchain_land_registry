@@ -364,3 +364,41 @@ footer hr {
   margin: 0;
   color: #666;
 }
+
+
+.history-section {
+    margin-top: 2rem;
+}
+
+
+.history-section h3 {
+
+    text-align:center;
+
+    color:#1f2937;
+
+}
+
+
+.history-card {
+
+    background:#f8fafc;
+
+    border-left:4px solid #2563eb;
+
+    padding:1rem;
+
+    margin-top:1rem;
+
+    border-radius:8px;
+
+}
+
+
+.history-card p {
+
+    margin:.5rem 0;
+
+    word-break:break-word;
+
+}

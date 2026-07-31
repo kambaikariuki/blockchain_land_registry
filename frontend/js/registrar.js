@@ -64,14 +64,14 @@ export async function loadPendingTransfers() {
                 <h3>Parcel ${parcelId}</h3>
 
                 <p><strong>Current Owner:</strong></p>
-                <p>${request.currentOwner}</p>
+                <p>${request[0]}</p>
 
                 <p><strong>New Owner:</strong></p>
-                <p>${request.newOwner}</p>
+                <p>${request[1]}</p>
 
                 <p><strong>Requested:</strong></p>
                 <p>${new Date(
-                  Number(request.requestedAt) * 1000,
+                  Number(request[2]) * 1000,
                 ).toLocaleString()}</p>
 
                 <button
