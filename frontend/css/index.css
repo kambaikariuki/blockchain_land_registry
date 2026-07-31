@@ -10,6 +10,8 @@ body {
   color: #1f2937;
 }
 
+
+
 body {
   min-height: 100vh;
   display: flex;
@@ -32,6 +34,7 @@ main {
   flex-direction: column;
   align-items: center;
   padding: 5rem 2rem;
+  
 }
 
 .hidden {
