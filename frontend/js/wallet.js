@@ -15,28 +15,21 @@ export async function connectWallet() {
 
   // Request wallet connection
 
-  try {
-    await window.ethereum.request({
-      method: "wallet_switchEthereumChain",
-      params: [
-        {
-          chainId: "0x7a69",
-        },
-      ],
-    });
-  } catch (error) {
-    console.log(error);
-  }
+  await window.ethereum.request({
+    method: "eth_requestAccounts",
+  });
+
+  const chainId = await window.ethereum.request({
+    method: "eth_chainId",
+  });
+
+  console.log("Connected network:", chainId);
 
   provider = new BrowserProvider(window.ethereum);
   signer = await provider.getSigner();
 
   contract = new Contract(CONTRACT_ADDRESS, ABI, signer);
   const network = await provider.getNetwork();
-
-  if (network.chainId !== 31337n) {
-    throw new Error("Please switch MetaMask to the Hardhat Localhost network.");
-  }
 
   return await signer.getAddress();
 }
@@ -102,4 +95,12 @@ export async function isRegistrar() {
   const account = await getAccount();
 
   return await contract.isRegistrar(account);
+}
+
+export async function checkNetwork() {
+  const chainId = await window.ethereum.request({
+    method: "eth_chainId",
+  });
+
+  return chainId;
 }

@@ -8,40 +8,30 @@
   </head>
 
   <body>
- <nav>
-    <h2>Land Registry</h2>
+    <nav>
+      <h2>Land Registry</h2>
 
-    <div>
+      <div>
         <a href="index.html" class="active">Home</a>
-        <a href="dashboard.html" class="active">Dashboard</a>
-        <a href="verify.html" class="active">Verify Certificate</a>
-    </div>
-</nav>
-    <main><section class="hero">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="verify.html">Verify Certificate</a>
+      </div>
+    </nav>
+    <main>
+      <section class="hero">
+        <h1>Secure Land Ownership Powered by Blockchain</h1>
 
-    <h1>
-        Secure Land Ownership
-        Powered by Blockchain
-    </h1>
+        <p>
+          Verify land ownership, search registered parcels, and prevent
+          fraudulent transactions through a transparent decentralized registry.
+        </p>
 
-    <p>
-        Verify land ownership, search registered parcels,
-        and prevent fraudulent transactions through a
-        transparent decentralized registry.
-    </p>
+        <div class="search-container">
+          <input type="number" id="parcelId" placeholder="Enter Parcel ID" />
 
-    <div class="search-container">
-        <input
-            type="number"
-            id="parcelId"
-            placeholder="Enter Parcel ID"
-        >
-
-        <button id="searchBtn">
-            Search Property
-        </button>
-    </div>
-    <div id="searchResult" class="hidden">
+          <button id="searchBtn">Search Property</button>
+        </div>
+        <div id="searchResult" class="hidden">
           <div class="card">
             <h2>Property Details</h2>
 
@@ -73,107 +63,65 @@
         </div>
 
         <p id="searchMessage"></p>
+      </section>
+      <section class="features">
+        <h2>Why Blockchain Land Registry?</h2>
 
-</section>
-<section class="features">
-
-    <h2>Why Blockchain Land Registry?</h2>
-
-
-    <div class="feature-grid">
-
-        <div class="feature-card">
-
-            <h3>
-                🔐 Secure Ownership
-            </h3>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <h3>🔐 Secure Ownership</h3>
 
             <p>
-                Land records are stored on blockchain,
-                making ownership history tamper-resistant.
+              Land records are stored on blockchain, making ownership history
+              tamper-resistant.
             </p>
+          </div>
 
-        </div>
+          <div class="feature-card">
+            <h3>✓ Easy Verification</h3>
 
+            <p>Verify certificates instantly using cryptographic hashes.</p>
+          </div>
 
-        <div class="feature-card">
-
-            <h3>
-                ✓ Easy Verification
-            </h3>
+          <div class="feature-card">
+            <h3>🌍 Transparent Records</h3>
 
             <p>
-                Verify certificates instantly using
-                cryptographic hashes.
+              View ownership changes and transaction history without relying on
+              paper records.
             </p>
-
+          </div>
         </div>
+      </section>
+      <section class="steps">
+        <h2>How It Works</h2>
 
+        <div class="step-grid">
+          <div>
+            <h3>1. Search</h3>
+            <p>Enter a parcel ID to retrieve registered land details.</p>
+          </div>
 
-        <div class="feature-card">
+          <div>
+            <h3>2. Verify</h3>
+            <p>Confirm ownership using the certificate hash.</p>
+          </div>
 
-            <h3>
-                🌍 Transparent Records
-            </h3>
-
-            <p>
-                View ownership changes and transaction
-                history without relying on paper records.
-            </p>
-
+          <div>
+            <h3>3. Transfer</h3>
+            <p>Request secure ownership transfers through the registrar.</p>
+          </div>
         </div>
+      </section>
+      <section class="about">
+        <h2>About the Platform</h2>
 
-    </div>
-
-</section>
-<section class="steps">
-
-<h2>How It Works</h2>
-
-
-<div class="step-grid">
-
-
-<div>
-<h3>1. Search</h3>
-<p>
-Enter a parcel ID to retrieve registered land details.
-</p>
-</div>
-
-
-<div>
-<h3>2. Verify</h3>
-<p>
-Confirm ownership using the certificate hash.
-</p>
-</div>
-
-
-<div>
-<h3>3. Transfer</h3>
-<p>
-Request secure ownership transfers through the registrar.
-</p>
-</div>
-
-
-</div>
-
-</section>
-<section class="about">
-
-<h2>
-About the Platform
-</h2>
-
-<p>
-Blockchain Land Registry is a decentralized application
-designed to reduce land fraud by providing secure,
-transparent and verifiable property ownership records.
-</p>
-
-</section>
+        <p>
+          Blockchain Land Registry is a decentralized application designed to
+          reduce land fraud by providing secure, transparent and verifiable
+          property ownership records.
+        </p>
+      </section>
     </main>
 
     <footer>
