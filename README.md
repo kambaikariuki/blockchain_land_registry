@@ -41,33 +41,6 @@ The application allows authorized registrars to register land parcels, property 
 - Ethereum Sepolia Testnet
 - MetaMask
 
-## Project Structure
-
-```
-Blockchain-Land-Registry/
-│
-├── contracts/
-│   └── LandRegistry.sol
-│
-├── scripts/
-│   └── deploy.js
-│
-├── test/
-│   └── LandRegistry.test.js
-│
-├── frontend/
-│   ├── index.html
-│   ├── dashboard.html
-│   ├── verify.html
-│   ├── css/
-│   └── js/
-│
-├── artifacts/
-├── hardhat.config.js
-├── package.json
-└── README.md
-```
-
 ## Smart Contract Features
 
 The smart contract manages all blockchain operations, including:
