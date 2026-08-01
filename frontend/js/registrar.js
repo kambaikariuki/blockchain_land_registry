@@ -70,9 +70,7 @@ export async function loadPendingTransfers() {
                 <p>${request[1]}</p>
 
                 <p><strong>Requested:</strong></p>
-                <p>${new Date(
-                  Number(request[2]) * 1000,
-                ).toLocaleString()}</p>
+                <p>${new Date(Number(request[2]) * 1000).toLocaleString()}</p>
 
                 <button
                     class="approve-btn"

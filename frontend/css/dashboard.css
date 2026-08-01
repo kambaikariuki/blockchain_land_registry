@@ -1,249 +1,274 @@
-
-*{box-sizing:border-box}
-html,body{margin:0;padding:0;min-height:100%}
-body{
-font-family:"Inter",sans-serif;
-line-height:1.6;
-color:#1f2937;
-background:linear-gradient(135deg,#f8fafc,#a4c2b4);
-display:flex;
-flex-direction:column;
+* {
+  box-sizing: border-box;
 }
-.hidden{display:none!important}
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+body {
+  font-family: "Inter", sans-serif;
+  line-height: 1.6;
+  color: #1f2937;
+  background: linear-gradient(135deg, #f8fafc, #a4c2b4);
+  display: flex;
+  flex-direction: column;
+}
+.hidden {
+  display: none !important;
+}
 
 /* Navigation */
-nav{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:1rem 3rem;
-background:#1f2937;
-color:#fff;
-box-shadow:0 2px 8px rgba(0,0,0,.15);
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 3rem;
+  background: #1f2937;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
-nav h2{margin:0;font-size:1.4rem}
-nav div{display:flex;gap:1.25rem;align-items:center}
-nav a{
-text-decoration:none;
-color:#f9fafb;
-padding:.65rem 1rem;
-border-radius:8px;
-font-weight:500;
-transition:.25s;
+nav h2 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+nav div {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+}
+nav a {
+  text-decoration: none;
+  color: #f9fafb;
+  padding: 0.65rem 1rem;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: 0.25s;
 }
 nav a:hover,
-nav a.active{
-background:#2563eb;
-color:#fff;
-transform:translateY(-2px);
+nav a.active {
+  background: #2563eb;
+  color: #fff;
+  transform: translateY(-2px);
 }
 
 /* Layout */
-main{
-flex:1;
-width:min(1100px,100%);
-margin:0 auto;
-padding:3rem 1.5rem;
+main {
+  flex: 1;
+  width: min(1100px, 100%);
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
 }
-main>h1{
-text-align:center;
-font-size:2.3rem;
-margin:0 0 2rem;
+main > h1 {
+  text-align: center;
+  font-size: 2.3rem;
+  margin: 0 0 2rem;
 }
 
 /* Wallet */
 .wallet-section,
-main>div:first-of-type{
-text-align:center;
-margin-bottom:1rem;
+main > div:first-of-type {
+  text-align: center;
+  margin-bottom: 1rem;
 }
-#walletId{
-margin:1rem 0 2rem;
-font-family:monospace;
-word-break:break-all;
+#walletId {
+  margin: 1rem 0 2rem;
+  font-family: monospace;
+  word-break: break-all;
 }
 
-button{
-cursor:pointer;
-border:none;
-border-radius:8px;
-font-weight:600;
-transition:.2s;
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: 0.2s;
 }
-button:hover{transform:translateY(-2px)}
+button:hover {
+  transform: translateY(-2px);
+}
 
 #connectBtn,
 .card button,
-.buttons button{
-background:#2563eb;
-color:#fff;
-padding:.8rem 1.5rem;
+.buttons button {
+  background: #2563eb;
+  color: #fff;
+  padding: 0.8rem 1.5rem;
 }
 #connectBtn:hover,
 .card button:hover,
-.buttons button:hover{
-background:#1d4ed8;
+.buttons button:hover {
+  background: #1d4ed8;
 }
-.buttons button:first-child{
-background:#6b7280;
+.buttons button:first-child {
+  background: #6b7280;
 }
-.buttons button:first-child:hover{
-background:#4b5563;
+.buttons button:first-child:hover {
+  background: #4b5563;
 }
 
 /* Sections */
 #registrarSection,
-#ownerSection{margin-top:2rem}
+#ownerSection {
+  margin-top: 2rem;
+}
 #registrarSection h2,
-#ownerSection h2{
-margin-bottom:1.5rem;
+#ownerSection h2 {
+  margin-bottom: 1.5rem;
 }
 
 /* Cards */
 .card,
-.property-card{
-background:#fff;
-border:1px solid #e5e7eb;
-border-radius:12px;
-box-shadow:0 8px 20px rgba(0,0,0,.08);
+.property-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
-.card{
-padding:2rem;
-margin-bottom:2rem;
+.card {
+  padding: 2rem;
+  margin-bottom: 2rem;
 }
-.property-card{
-padding:1.5rem;
+.property-card {
+  padding: 1.5rem;
 }
 .card h3,
-.property-card h3{
-margin-top:0;
+.property-card h3 {
+  margin-top: 0;
 }
 
 /* Forms */
-label{
-display:block;
-margin:1rem 0 .4rem;
-font-weight:600;
+label {
+  display: block;
+  margin: 1rem 0 0.4rem;
+  font-weight: 600;
 }
-input{
-width:100%;
-padding:.85rem;
-border:1px solid #d1d5db;
-border-radius:8px;
-font-size:1rem;
-font-family:inherit;
+input {
+  width: 100%;
+  padding: 0.85rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
 }
-input:focus{
-outline:none;
-border-color:#2563eb;
-box-shadow:0 0 0 3px rgba(37,99,235,.2);
+input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
 }
 
 /* Property Grid */
-#propertyList{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:1.5rem;
+#propertyList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
 }
 
 /* Pending transfers */
-#pendingTransfers{
-display:grid;
-gap:1rem;
+#pendingTransfers {
+  display: grid;
+  gap: 1rem;
 }
 
 /* Modal */
-.modal{
-position:fixed;
-inset:0;
-display:flex;
-justify-content:center;
-align-items:center;
-background:rgba(0,0,0,.5);
-z-index:1000;
-padding:1rem;
+.modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  padding: 1rem;
 }
-.modal-card{
-background:#fff;
-width:min(420px,100%);
-padding:2rem;
-border-radius:12px;
-box-shadow:0 15px 40px rgba(0,0,0,.2);
+.modal-card {
+  background: #fff;
+  width: min(420px, 100%);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
 }
-.modal-card h2{margin-top:0}
-.buttons{
-display:flex;
-justify-content:flex-end;
-gap:1rem;
-margin-top:1.5rem;
+.modal-card h2 {
+  margin-top: 0;
+}
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.5rem;
 }
 
 /* Status messages */
 #registerStatus,
-#transferStatus{
-margin-top:1rem;
-font-weight:600;
-word-break:break-word;
+#transferStatus {
+  margin-top: 1rem;
+  font-weight: 600;
+  word-break: break-word;
 }
 
 /* Footer */
-footer{
-margin-top:auto;
-padding:2rem 1rem;
-text-align:center;
+footer {
+  margin-top: auto;
+  padding: 2rem 1rem;
+  text-align: center;
 }
-footer hr{margin-bottom:1.5rem}
-.footer-content{
-display:flex;
-flex-direction:column;
-gap:.5rem;
+footer hr {
+  margin-bottom: 1.5rem;
 }
-.footer-content p{
-margin:0;
-color:#666;
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.footer-content p {
+  margin: 0;
+  color: #666;
 }
 
 /* Tablet */
-@media (max-width:768px){
-nav{
-flex-direction:column;
-padding:1rem;
-gap:1rem;
-}
-nav div{
-width:100%;
-flex-direction:column;
-}
-nav a{
-display:block;
-width:100%;
-text-align:center;
-}
-main{
-padding:2rem 1rem;
-}
-main>h1{
-font-size:1.9rem;
-}
-.buttons{
-flex-direction:column;
-}
-.buttons button{
-width:100%;
-}
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+  }
+  nav div {
+    width: 100%;
+    flex-direction: column;
+  }
+  nav a {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+  main {
+    padding: 2rem 1rem;
+  }
+  main > h1 {
+    font-size: 1.9rem;
+  }
+  .buttons {
+    flex-direction: column;
+  }
+  .buttons button {
+    width: 100%;
+  }
 }
 
 /* Phones */
-@media (max-width:480px){
-main>h1{font-size:1.6rem}
-.card,
-.property-card{
-padding:1.2rem;
-}
-#propertyList{
-grid-template-columns:1fr;
-}
-nav h2{
-font-size:1.2rem;
-}
+@media (max-width: 480px) {
+  main > h1 {
+    font-size: 1.6rem;
+  }
+  .card,
+  .property-card {
+    padding: 1.2rem;
+  }
+  #propertyList {
+    grid-template-columns: 1fr;
+  }
+  nav h2 {
+    font-size: 1.2rem;
+  }
 }

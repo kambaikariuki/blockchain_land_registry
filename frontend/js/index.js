@@ -52,7 +52,6 @@ async function searchProperty() {
     await loadHistory(parcelId);
 
     searchResult.classList.remove("hidden");
-
   } catch (error) {
     console.error(error);
 

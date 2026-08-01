@@ -9,6 +9,7 @@ The Blockchain Land Registry is a decentralized application (dApp) designed to i
 The application allows authorized registrars to register land parcels, property owners to request ownership transfers, and anyone to verify land ownership certificates through a simple web interface.
 
 ## Features
+
 - Connect using MetaMask
 - Register new land parcels (Registrar only)
 - Search registered properties
@@ -23,17 +24,20 @@ The application allows authorized registrars to register land parcels, property 
 ## Technologies Used
 
 ### Smart Contract
+
 - Solidity
 - OpenZeppelin Contracts
 - Hardhat
 
 ### Frontend
+
 - HTML5
 - CSS3
 - JavaScript (ES6)
 - Ethers.js
 
 ### Blockchain and wallet integration
+
 - Ethereum Sepolia Testnet
 - MetaMask
 
@@ -75,7 +79,9 @@ The smart contract manages all blockchain operations, including:
 - Ownership transfers
 - Transfer approval
 - Ownership history through blockchain events
+
 ## Application Pages
+
 ### Home
 
 The landing page allows users to:
@@ -90,11 +96,13 @@ The landing page allows users to:
 The dashboard supports two roles.
 
 #### Registrar
+
 - Register new properties
 - View pending transfer requests
 - Approve ownership transfers
 
 #### Property Owner
+
 - View owned properties
 - Request ownership transfers
 - Transfer property to another Ethereum wallet
@@ -107,7 +115,6 @@ Users can verify ownership certificates by entering:
 - Certificate Hash
 
 The application compares the submitted hash against the blockchain record and displays whether the certificate is valid.
-
 
 ### Installation
 
@@ -151,7 +158,6 @@ module.exports = {
 
 `npx hardhat run scripts/deploy.js --network localhost`
 
-
 #### 2. Deploying to Sepolia
 
 1. Get a wallet
@@ -184,7 +190,7 @@ It looks similar to:
 
 4. Install dotenv
 
- `npm install dotenv`
+`npm install dotenv`
 
 5. Create `.env` file
 
@@ -198,28 +204,30 @@ Add to `.env` to `.gitignore`
 
 6. Configure Hardhat
 
-    ```require("@nomicfoundation/hardhat-toolbox");
-    require("dotenv").config();
+   ````require("@nomicfoundation/hardhat-toolbox");
+   require("dotenv").config();
 
-    module.exports = {
+   module.exports = {
 
-        solidity: "0.8.28",
+       solidity: "0.8.28",
 
-        networks: {
+       networks: {
 
-            sepolia: {
+           sepolia: {
 
-                url: process.env.SEPOLIA_RPC_URL,
+               url: process.env.SEPOLIA_RPC_URL,
 
-                accounts: [
-                    process.env.PRIVATE_KEY
-                ]
+               accounts: [
+                   process.env.PRIVATE_KEY
+               ]
 
-            }
+           }
 
-        }
+       }
 
-    };```
+   };```
+
+   ````
 
 7. Compile
 

@@ -23,8 +23,6 @@ export async function connectWallet() {
     method: "eth_chainId",
   });
 
-
-
   provider = new BrowserProvider(window.ethereum);
   signer = await provider.getSigner();
 
