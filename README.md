@@ -244,3 +244,32 @@ For the frontend, change directory to the `frontend` directory and initalize a s
 `python -m http.server 8000`
 
 Open your browser and go to `localhost:8000` or `127.0.0.1:8000` to access the frontend.
+
+#### Note:
+
+If deployed locally, in `frontend/js/wallet.js`, comment out line 10:
+
+`// const DEPLOYMENT_BLOCK = 11390393;`
+
+And replace `DEPLOYMENT_BLOCK` with `0` :
+
+```
+  const events = await contract.queryFilter(
+    "OwnershipTransferred",
+    0,
+    "latest",
+  );
+```
+
+If deployed on Sepolia or another testnet, replace the value of `DEPLOYMENT_BLOCK` with the deployment block of your contract:
+`const DEPLOYMENT_BLOCK = 11390393;`
+
+```
+  const events = await contract.queryFilter(
+    "OwnershipTransferred",
+    DEPLOYMENT_BLOCK,
+    "latest",
+  );
+```
+
+This will allow you to view the transaction history of each parcel.
